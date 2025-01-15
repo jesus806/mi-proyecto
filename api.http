@@ -1,0 +1,34 @@
+###
+POST http://localhost:3001/Registro
+content-type: application/json
+
+{
+    "username": "jesus",
+    "password":"34126011229",
+    "email":"obregoso06@gmail.com"
+}
+
+###
+
+POST http://localhost:3001/Registro/Verificacion
+content-type: application/json
+
+{
+    "codigo":"199965"
+}
+
+###
+POST http://localhost:3001/Login
+content-type: application/json
+
+{
+    "email": "obregoso06@gmail.com",
+    "password":"34126011229"
+}
+
+###
+GET  http://localhost:3001/inicio
+
+###
+
+GET  http://localhost:3001/Desconexion
