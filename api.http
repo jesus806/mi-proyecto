@@ -14,7 +14,7 @@ POST http://localhost:3001/Registro/Verificacion
 content-type: application/json
 
 {
-    "codigo":"199965"
+    "codigo":"960411"
 }
 
 ###
@@ -32,3 +32,19 @@ GET  http://localhost:3001/inicio
 ###
 
 GET  http://localhost:3001/Desconexion
+
+###
+GET  http://localhost:3001/servicios
+
+###
+POST http://localhost:3001/servicio
+content-type: application/json
+
+{
+    "servicio":"Electricidad",
+    "precio":"130",
+    "stock":3,
+    "descripcion":"Electricidad industrial",
+    "imagen":"https://images.unsplash.com/photo-1607631755187-298a3f9a640a?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8b2ZpY2lvc3xlbnwwfHwwfHx8MA%3D%3D"
+    
+}

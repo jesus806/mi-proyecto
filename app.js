@@ -32,6 +32,8 @@ app.use(express.json())
 app.use(cors(optioncors))
 
 app.get('/inicio',rutes)
+app.get('/servicio',rutes)
+app.post('/servicio',rutes)
 app.post('/Registro',rutes)
 app.post('/Registro/verificacion',rutes)
 app.post('/Login',rutes)

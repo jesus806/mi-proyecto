@@ -4,9 +4,7 @@ const dotenv=require('dotenv')
 const {Sequelize}=require('sequelize')
 const express =require('express')
 const{ User}=require('../modelos/user.js')
-const {Producto}=require('../modelos/producto.js')
-const {Categoria}=require('../modelos/categoria.js')
-const {ProducUser}=require('../modelos/producUser.js')
+const{ Servicios}=require('../modelos/servicios.js')
 const nodemailer= require ('nodemailer');
 const jwt=require('jsonwebtoken')
 const bcryptjs = require('bcryptjs');
@@ -56,23 +54,11 @@ function Nodemail(numero,email) {
 
 async function conect() {
     try {
-      Categoria.hasMany(Producto,{
-        foreignKey:{
-          name:'categori_id'
-        }
-      });
-      Producto.belongsTo(Categoria,{
-        foreignKey:{
-          name:'categori_id'
-        }
-      })
-      Producto.belongsToMany(User,{through:ProducUser,foreignKey: 'productoId',otherKey: 'userId'});
-      User.belongsToMany(Producto,{through:ProducUser,foreignKey: 'userId',otherKey: 'productoId'})
+      
         await sequelize.authenticate();
-        await Categoria.sync()
+        await Servicios.sync()
         await User.sync()
-        await Producto.sync()
-        await ProducUser.sync()
+        
 
         console.log('conecting')
         
@@ -219,7 +205,33 @@ const desconexio=async(req,res)=>{
   
 }
 
+const servicio=async(req,res)=>{
+  try {
+    const servicio=await Servicios.findAll()
+    if (!servicio) {
+      return res.status(400).json({mensaje:'error al encontrar los servicio'})
+    }
+    res.json(servicio)
+  } catch (error) {
+    res.status(500).json({mensaje:'error del servidor'})
+  }
+}
 
-module.exports={inicio,regitro,validarCodigo,autorizacion,desconexio,Login}
+const crearServico=async(req,res)=>{
+  const{servicio,precio,stock,descripcion,imagen}=req.body
+  const servico=await Servicios.create({
+    servicio,
+    precio,
+    stock,
+    descripcion,
+    imagen
+  });
+  if (!servicio) {
+    return res.status(400).json({mensaje:'error al crear el servicio'})
+  }
+  res.json(servico)
+}
+
+module.exports={inicio,regitro,validarCodigo,autorizacion,desconexio,Login,servicio,crearServico}
 
 

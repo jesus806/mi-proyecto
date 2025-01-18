@@ -1,16 +1,16 @@
 const {DataTypes, Association}=require('sequelize')
 const {sequelize}=require('../conexion/conecting.js')
 
-const Producto = sequelize.define('producto',{
-  ProductId:{
+const Servicios = sequelize.define('servicio',{
+  servico_Id:{
     type:DataTypes.INTEGER,
     autoIncrement:true,
     primaryKey:true
 
   },
-  Produc_Name:{
-    type:DataTypes.STRING,
-    allowNull:false,
+  servicio:{
+    type:DataTypes.TEXT,
+    allowNull:false
   },
   precio:{
     type:DataTypes.DECIMAL,
@@ -20,10 +20,18 @@ const Producto = sequelize.define('producto',{
     type:DataTypes.INTEGER,
     allowNull:false
   },
+  descripcion:{
+    type:DataTypes.TEXT,
+    allowNull:false
+  },
+  imagen:{
+    type:DataTypes.STRING,
+    allowNull:false
+  },
 
 },{
   timestamps:false
 });
 
 
-module.exports={Producto}
+module.exports={Servicios}
